@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --navy: #0A2540;
+    --gold: #C8A951;
+
+    --glass-bg: rgba(10, 37, 64, 0.05);
+    --glass-border: rgba(10, 37, 64, 0.08);
+
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 200ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-navy antialiased;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(200, 169, 81, 0.3);
+    color: #0A2540;
+  }
+}
+
+
+@layer components {
+
+  /* === CONTAINER === */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  /* === SECTION SPACING === */
+  .section {
+    @apply py-20 lg:py-28;
+  }
+
+  /* === GLASS === */
+  .glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    .glass {
+      background: rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  .glass-dark {
+    background: rgba(10, 37, 64, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(200, 169, 81, 0.15);
+    border-radius: 1.25rem;
+  }
+
+  .glass-subtle {
+    background: rgba(10, 37, 64, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(10, 37, 64, 0.06);
+    border-radius: 0.75rem;
+  }
+
+  /* === GRADIENT TEXT === */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #C8A951, #E6D18B);
+  }
+
+  .gradient-text-navy {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0A2540, #2F4F6E);
+  }
+
+  /* === DEPTH SYSTEM === */
+  .depth-1 {
+    box-shadow: 0 2px 10px rgba(10, 37, 64, 0.05);
+  }
+
+  .depth-2 {
+    box-shadow: 0 10px 30px rgba(10, 37, 64, 0.08);
+  }
+
+  .depth-3 {
+    box-shadow: 0 20px 60px rgba(10, 37, 64, 0.12);
+  }
+
+  /* === SECTION DIVIDER === */
+  .section-divider {
+    @apply w-full;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(200, 169, 81, 0.3),
+        rgba(10, 37, 64, 0.15),
+        transparent);
+  }
+
+  /* === BUTTONS === */
+  .btn-primary {
+    @apply relative overflow-hidden rounded-xl px-8 py-3.5 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, #C8A951, #B09339);
+    box-shadow: 0 4px 20px rgba(200, 169, 81, 0.3);
+    z-index: 0;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 30px rgba(200, 169, 81, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 300ms;
+    background: linear-gradient(135deg, #B09339, #C8A951);
+    z-index: -1;
+  }
+
+  .btn-primary:hover::after {
+    opacity: 1;
+  }
+
+  .btn-navy {
+    @apply rounded-xl px-8 py-3.5 font-semibold text-white transition-all duration-300;
+    background: #0A2540;
+  }
+
+  .btn-navy:hover {
+    background: #0F3460;
+    box-shadow: 0 8px 30px rgba(10, 37, 64, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    @apply rounded-xl px-8 py-3.5 font-semibold transition-all duration-300;
+    color: #0A2540;
+    border: 2px solid rgba(10, 37, 64, 0.15);
+  }
+
+  .btn-outline:hover {
+    border-color: #C8A951;
+    background: rgba(200, 169, 81, 0.05);
+  }
+
+  /* === BUTTON FOCUS (ACCESSIBILITY) === */
+  .btn-primary:focus,
+  .btn-navy:focus,
+  .btn-outline:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 169, 81, 0.3);
+  }
+
+  /* === INPUT === */
+  .input-field {
+    @apply w-full px-5 py-4 rounded-xl text-navy text-sm transition-all duration-300;
+    background: rgba(10, 37, 64, 0.05);
+    border: 1.5px solid rgba(10, 37, 64, 0.1);
+  }
+
+  .input-field::placeholder {
+    color: rgba(10, 37, 64, 0.4);
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: #C8A951;
+    box-shadow: 0 0 0 3px rgba(200, 169, 81, 0.1);
+    background: white;
+  }
+
+  /* === DARK SECTION === */
+  .section-dark {
+    @apply bg-navy text-white;
+  }
+
+  .section-dark .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
