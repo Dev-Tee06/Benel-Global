@@ -15,23 +15,27 @@ import {
   Lightbulb,
   BarChart3,
 } from "lucide-react";
+import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 
 const sessionExpectations = [
   {
     icon: Target,
     title: "Business Audit",
-    description: "We'll review your current marketing efforts and identify what's working and what's not.",
+    description:
+      "We'll review your current marketing efforts and identify what's working and what's not.",
   },
   {
     icon: Lightbulb,
     title: "Growth Diagnosis",
-    description: "Pinpoint the exact bottlenecks preventing your business from scaling predictably.",
+    description:
+      "Pinpoint the exact bottlenecks preventing your business from scaling predictably.",
   },
   {
     icon: BarChart3,
     title: "Strategy Blueprint",
-    description: "Walk away with a clear, actionable plan — even if you don't work with us.",
+    description:
+      "Walk away with a clear, actionable plan  even if you don't work with us.",
   },
 ];
 
@@ -53,36 +57,54 @@ export default function ContactPage() {
     growthChallenge: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [formStarted, setFormStarted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const handleFocus = () => {
+    if (!formStarted) {
+      track("form_started");
+      setFormStarted(true);
+    }
+  };
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formState.fullName.trim()) newErrors.fullName = "Full name is required";
-    if (!formState.businessName.trim()) newErrors.businessName = "Business name is required";
+    if (!formState.fullName.trim())
+      newErrors.fullName = "Full name is required";
+    if (!formState.businessName.trim())
+      newErrors.businessName = "Business name is required";
     if (!formState.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
       newErrors.email = "Please enter a valid email";
     }
-    if (!formState.businessDescription.trim()) newErrors.businessDescription = "Please describe your business";
-    if (!formState.growthChallenge) newErrors.growthChallenge = "Please select a challenge";
+    if (!formState.businessDescription.trim())
+      newErrors.businessDescription = "Please describe your business";
+    if (!formState.growthChallenge)
+      newErrors.growthChallenge = "Please select a challenge";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      track("form_abandonment");
+      return;
+    }
 
     const mailtoLink = `mailto:benel.hub@gmail.com?subject=Strategy Session Request — ${encodeURIComponent(formState.businessName)}&body=${encodeURIComponent(
-      `Name: ${formState.fullName}\nBusiness: ${formState.businessName}\nEmail: ${formState.email}\n\nBusiness Description:\n${formState.businessDescription}\n\nGrowth Challenge: ${formState.growthChallenge}`
+      `Name: ${formState.fullName}\nBusiness: ${formState.businessName}\nEmail: ${formState.email}\n\nBusiness Description:\n${formState.businessDescription}\n\nGrowth Challenge: ${formState.growthChallenge}`,
     )}`;
     window.open(mailtoLink, "_blank");
     setSubmitted(true);
+    track("form_completion");
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
@@ -99,20 +121,22 @@ export default function ContactPage() {
     <>
       {/* ===================== HERO ===================== */}
       <section className="relative pt-36 pb-20 overflow-hidden">
-
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <span className="text-sm font-semibold text-gold uppercase tracking-widest">
               Book a Session
             </span>
-            <h1 className="mt-4 text-5xl sm:text-6xl lg:text-7xl font-bold font-display tracking-tight leading-[1.05] text-navy">
-              Let&apos;s build your{" "}
-              <span className="gradient-text">growth system</span>
+            <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight leading-[1.1] text-navy">
+              This session exists for one reason:
+              <br className="hidden sm:block" />
+              to find exactly what&apos;s{" "}
+              <span className="gradient-text">limiting your growth</span> and
+              show you the way through it.
             </h1>
             <p className="mt-6 text-navy-300 text-xl max-w-2xl leading-relaxed">
-              Book a free 60-minute strategy session. No fluff, no
-              obligation — just a clear-eyed look at what&apos;s holding your
-              business back and what to do about it.
+              Book a free 60-minute strategy session. No fluff, no obligation
+              just a clear-eyed look at what&apos;s holding your business back
+              and what to do about it.
             </p>
           </AnimatedSection>
         </div>
@@ -195,7 +219,8 @@ export default function ContactPage() {
                         Book Your Strategy Session
                       </h2>
                       <p className="mt-2 text-navy-300 text-sm">
-                        Tell us about your business and we&apos;ll come prepared.
+                        Tell us about your business and we&apos;ll come
+                        prepared.
                       </p>
                     </div>
 
@@ -213,11 +238,14 @@ export default function ContactPage() {
                           type="text"
                           value={formState.fullName}
                           onChange={handleChange}
+                          onFocus={handleFocus}
                           placeholder="Your full name"
                           className={`input-field ${errors.fullName ? "!border-red-400" : ""}`}
                         />
                         {errors.fullName && (
-                          <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.fullName}
+                          </p>
                         )}
                       </div>
                       <div>
@@ -233,11 +261,14 @@ export default function ContactPage() {
                           type="text"
                           value={formState.businessName}
                           onChange={handleChange}
+                          onFocus={handleFocus}
                           placeholder="Your business name"
                           className={`input-field ${errors.businessName ? "!border-red-400" : ""}`}
                         />
                         {errors.businessName && (
-                          <p className="text-red-500 text-xs mt-1">{errors.businessName}</p>
+                          <p className="text-red-500 text-xs mt-1">
+                            {errors.businessName}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -255,11 +286,14 @@ export default function ContactPage() {
                         type="email"
                         value={formState.email}
                         onChange={handleChange}
+                        onFocus={handleFocus}
                         placeholder="you@business.com"
                         className={`input-field ${errors.email ? "!border-red-400" : ""}`}
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
 
@@ -276,6 +310,7 @@ export default function ContactPage() {
                         rows={4}
                         value={formState.businessDescription}
                         onChange={handleChange}
+                        onFocus={handleFocus}
                         placeholder="What does your business do? Who do you serve? What stage are you at?"
                         className={`input-field resize-none ${errors.businessDescription ? "!border-red-400" : ""}`}
                       />
@@ -298,6 +333,7 @@ export default function ContactPage() {
                         name="growthChallenge"
                         value={formState.growthChallenge}
                         onChange={handleChange}
+                        onFocus={handleFocus}
                         className={`input-field ${errors.growthChallenge ? "!border-red-400" : ""}`}
                       >
                         <option value="" disabled>
@@ -342,6 +378,9 @@ export default function ContactPage() {
                     <li>
                       <a
                         href="mailto:benel.hub@gmail.com"
+                        onClick={() =>
+                          track("social_click", { platform: "email" })
+                        }
                         className="flex items-start gap-3 text-navy-300 hover:text-navy transition-colors group"
                       >
                         <Mail
@@ -349,9 +388,7 @@ export default function ContactPage() {
                           className="text-gold mt-0.5 flex-shrink-0"
                         />
                         <div>
-                          <p className="font-medium text-navy text-sm">
-                            Email
-                          </p>
+                          <p className="font-medium text-navy text-sm">Email</p>
                           <p className="text-sm">benel.hub@gmail.com</p>
                         </div>
                       </a>
@@ -359,6 +396,9 @@ export default function ContactPage() {
                     <li>
                       <a
                         href="tel:+2348000000000"
+                        onClick={() =>
+                          track("social_click", { platform: "phone" })
+                        }
                         className="flex items-start gap-3 text-navy-300 hover:text-navy transition-colors group"
                       >
                         <Phone
@@ -366,9 +406,7 @@ export default function ContactPage() {
                           className="text-gold mt-0.5 flex-shrink-0"
                         />
                         <div>
-                          <p className="font-medium text-navy text-sm">
-                            Phone
-                          </p>
+                          <p className="font-medium text-navy text-sm">Phone</p>
                           <p className="text-sm">+234 800 000 0000</p>
                         </div>
                       </a>
@@ -387,6 +425,9 @@ export default function ContactPage() {
                         href="https://www.instagram.com/benel.global/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          track("social_click", { platform: "instagram" })
+                        }
                         className="flex items-center gap-3 p-3 rounded-xl bg-navy/3 hover:bg-navy/5 transition-colors text-navy-400 hover:text-navy text-sm font-medium"
                       >
                         <Instagram size={18} className="text-gold" />
@@ -398,9 +439,16 @@ export default function ContactPage() {
                         href="https://www.tiktok.com/@benel.global"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          track("social_click", { platform: "tiktok" })
+                        }
                         className="flex items-center gap-3 p-3 rounded-xl bg-navy/3 hover:bg-navy/5 transition-colors text-navy-400 hover:text-navy text-sm font-medium"
                       >
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-gold">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-[18px] h-[18px] text-gold"
+                        >
                           <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.91a8.2 8.2 0 004.76 1.52V7a4.84 4.84 0 01-1-.31z" />
                         </svg>
                         TikTok
@@ -411,9 +459,16 @@ export default function ContactPage() {
                         href="https://www.linkedin.com/company/benelglobal"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() =>
+                          track("social_click", { platform: "linkedin" })
+                        }
                         className="flex items-center gap-3 p-3 rounded-xl bg-navy/3 hover:bg-navy/5 transition-colors text-navy-400 hover:text-navy text-sm font-medium"
                       >
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-gold">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-[18px] h-[18px] text-gold"
+                        >
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
                         LinkedIn
@@ -447,10 +502,8 @@ export default function ContactPage() {
           <AnimatedSection>
             <div className="text-center">
               <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-white leading-relaxed italic">
-                &ldquo;The best time to build a growth system was yesterday.
-                <br />
-                The second best time is{" "}
-                <span className="text-gold">right now.</span>&rdquo;
+                &ldquo;"When your business is clear, Your marketing works, Your
+                sales flow, and your growth makes sense"
               </p>
               <div className="mt-10">
                 <Link

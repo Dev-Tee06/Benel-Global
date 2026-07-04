@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { track } from "@vercel/analytics/react";
 import { Mail, Phone, Instagram, ArrowUpRight } from "lucide-react";
 
 const footerLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -21,10 +25,10 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-navy-300 text-sm leading-relaxed max-w-xs">
-              Growth consultancy helping businesses build clarity, strategy, and systems that drive real revenue.
+              Growth consultancy helping businesses build the clarity, strategy, and systems that drive real revenue.
             </p>
             <p className="text-navy-400 text-xs italic">
-              Consulting · Strategy · Execution
+              Marketing Consulting · Brand Strategy · Digital Execution
             </p>
           </div>
 
@@ -60,6 +64,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:benel.hub@gmail.com"
+                  onClick={() => track("social_click", { platform: "email" })}
                   className="text-navy-300 hover:text-gold text-sm transition-colors duration-200 flex items-center gap-3"
                 >
                   <Mail size={16} className="text-gold" />
@@ -71,6 +76,7 @@ export function Footer() {
                   href="https://www.instagram.com/benel.global/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track("social_click", { platform: "instagram" })}
                   className="text-navy-300 hover:text-gold text-sm transition-colors duration-200 flex items-center gap-3"
                 >
                   <Instagram size={16} className="text-gold" />
@@ -84,7 +90,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-16 pt-8 border-t border-navy/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-navy-400 text-xs">
-            © {new Date().getFullYear()} BenEl Global. All rights reserved.
+            © 2026 BenEl Global
           </p>
           <p className="text-navy-400 text-xs">
             Built for growth. Designed with purpose.
