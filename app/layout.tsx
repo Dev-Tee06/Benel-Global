@@ -40,14 +40,17 @@ export const metadata: Metadata = {
     url: "https://benelglobal.com",
     images: [
       {
-        url: "/BenEl%20logo.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "BenEl Global Logo",
       }
     ],
   },
-  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -64,7 +67,7 @@ export default function RootLayout({
             "@type":"Organization",
             "name":"BenEl Global",
             "url":"https://benelglobal.com",
-            "logo":"https://benelglobal.com/BenEl%20logo.png"
+            "logo":"https://benelglobal.com/logo.png"
           }`}
         </Script>
       </head>

@@ -502,8 +502,8 @@ export default function ContactPage() {
           <AnimatedSection>
             <div className="text-center">
               <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-white leading-relaxed italic">
-                &ldquo;"When your business is clear, Your marketing works, Your
-                sales flow, and your growth makes sense"
+                &ldquo;When your business is clear, Your marketing works, Your
+                sales flow, and your growth makes sense&rdquo;
               </p>
               <div className="mt-10">
                 <Link
