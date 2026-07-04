@@ -7,7 +7,7 @@ interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right";
+  direction?: "up" | "down" | "left" | "right" | "zoom" | "blur" | "scale";
 }
 
 export function AnimatedSection({
@@ -20,11 +20,38 @@ export function AnimatedSection({
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const controls = useAnimation();
 
-  const directionMap = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 },
+  const directionMap: Record<string, Record<string, number>> = {
+    up: { y: 60, x: 0, scale: 1 },
+    down: { y: -60, x: 0, scale: 1 },
+    left: { y: 0, x: 60, scale: 1 },
+    right: { y: 0, x: -60, scale: 1 },
+    zoom: { y: 0, x: 0, scale: 0.9 },
+    blur: { y: 30, x: 0, scale: 1 },
+    scale: { y: 0, x: 0, scale: 0.85 },
+  };
+
+  const getHiddenState = () => {
+    const base: Record<string, number | string> = {
+      opacity: 0,
+      ...directionMap[direction],
+    };
+    if (direction === "blur") {
+      base.filter = "blur(12px)";
+    }
+    return base;
+  };
+
+  const getVisibleState = () => {
+    const base: Record<string, number | string> = {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+    };
+    if (direction === "blur") {
+      base.filter = "blur(0px)";
+    }
+    return base;
   };
 
   useEffect(() => {
@@ -39,18 +66,13 @@ export function AnimatedSection({
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: {
-          opacity: 0,
-          ...directionMap[direction],
-        },
+        hidden: getHiddenState(),
         visible: {
-          opacity: 1,
-          y: 0,
-          x: 0,
+          ...getVisibleState(),
           transition: {
-            duration: 0.6,
+            duration: 1,
             delay,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.16, 1, 0.3, 1],
           },
         },
       }}

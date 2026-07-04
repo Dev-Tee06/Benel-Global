@@ -47,8 +47,9 @@ const config: Config = {
         cream: "#FDFAF3",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        sans: ["'lemonMilkLight'", "'lemonMilkLight Fallback'", "var(--font-inter)", "sans-serif"],
+        display: ["'lemonMilkBold'", "'lemonMilkBold Fallback'", "'Clash Display'", "sans-serif"],
+        nav: ["'lemonMilkLight'", "'lemonMilkLight Fallback'", "'Satoshi'", "sans-serif"],
       },
       backgroundImage: {
         "hero-gradient": "linear-gradient(135deg, #0A2540 0%, #0F3460 50%, #0A2540 100%)",
@@ -64,9 +65,13 @@ const config: Config = {
         "card-hover": "0 8px 40px rgba(10, 37, 64, 0.12)",
       },
       animation: {
-        float: "float 6s ease-in-out infinite",
+        float: "float 12s ease-in-out infinite",
+        floatCard: "floatCard 6s ease-in-out infinite",
         shimmer: "shimmer 2s linear infinite",
         "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        fadeUp: "fadeUp 0.6s ease-out forwards",
+        gradientMove: "gradientMove 15s infinite linear",
+        borderFlow: "borderFlow 6s linear infinite",
       },
       keyframes: {
         float: {
@@ -79,6 +84,23 @@ const config: Config = {
         },
         fadeInUp: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        floatCard: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        gradientMove: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+        borderFlow: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "200% 50%" },
+        },
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(50px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },

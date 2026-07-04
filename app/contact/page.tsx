@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
+import { CinematicBackground } from "../components/CinematicBackground";
+import { InteractiveCard } from "../components/InteractiveCard";
 
 const sessionExpectations = [
   {
@@ -120,9 +122,10 @@ export default function ContactPage() {
   return (
     <>
       {/* ===================== HERO ===================== */}
-      <section className="relative pt-36 pb-20 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
+      <section className="relative pt-36 pb-20 overflow-hidden bg-white">
+        <CinematicBackground />
+        <div className="container-custom relative z-10">
+          <AnimatedSection direction="up" delay={0.2}>
             <span className="text-sm font-semibold text-gold uppercase tracking-widest">
               Book a Session
             </span>
@@ -130,7 +133,7 @@ export default function ContactPage() {
               This session exists for one reason:
               <br className="hidden sm:block" />
               to find exactly what&apos;s{" "}
-              <span className="gradient-text">limiting your growth</span> and
+              <span className="text-cinematic-gradient">limiting your growth</span> and
               show you the way through it.
             </h1>
             <p className="mt-6 text-navy-300 text-xl max-w-2xl leading-relaxed">
@@ -143,29 +146,31 @@ export default function ContactPage() {
       </section>
 
       {/* ===================== EXPECTATIONS ===================== */}
-      <section className="relative py-20 overflow-hidden bg-cream">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+      <section className="relative py-20 overflow-hidden bg-white">
+        <div className="container-custom relative z-10">
           <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-navy">
               What to expect from your{" "}
-              <span className="gradient-text">60-minute session</span>
+              <span className="text-cinematic-gradient">60-minute session</span>
             </h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-6">
             {sessionExpectations.map((item, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="bg-white rounded-2xl p-8 text-center shadow-card h-full">
-                  <div className="w-14 h-14 rounded-xl bg-navy flex items-center justify-center mx-auto mb-5">
-                    <item.icon size={24} className="text-gold" />
+              <AnimatedSection key={i} delay={i * 0.1} direction="zoom">
+                <InteractiveCard>
+                  <div className="service-card flex flex-col items-center text-center h-full w-full">
+                    <div className="w-14 h-14 rounded-xl bg-navy flex items-center justify-center mx-auto mb-5">
+                      <item.icon size={24} className="text-gold" />
+                    </div>
+                    <h3 className="text-lg font-bold font-display text-navy">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-navy-300 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-bold font-display text-navy">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-navy-300 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+                </InteractiveCard>
               </AnimatedSection>
             ))}
           </div>
@@ -173,12 +178,13 @@ export default function ContactPage() {
       </section>
 
       {/* ===================== BOOKING FORM + SIDEBAR ===================== */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+      <section className="relative py-24 overflow-hidden bg-white">
+        <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12">
             {/* Booking Form */}
-            <AnimatedSection>
-              <div className="glass gradient-border rounded-2xl p-8 md:p-10">
+            <AnimatedSection direction="zoom">
+              <InteractiveCard>
+                <div className="service-card w-full">
                 {submitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -363,14 +369,16 @@ export default function ContactPage() {
                     </button>
                   </form>
                 )}
-              </div>
+                </div>
+              </InteractiveCard>
             </AnimatedSection>
 
             {/* Sidebar */}
             <AnimatedSection direction="right" delay={0.2}>
               <div className="space-y-6">
                 {/* Direct Contact */}
-                <div className="glass rounded-2xl p-7">
+                <InteractiveCard>
+                  <div className="service-card w-full h-full">
                   <h3 className="text-lg font-bold font-display text-navy mb-5">
                     Direct Contact
                   </h3>
@@ -412,10 +420,12 @@ export default function ContactPage() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                  </div>
+                </InteractiveCard>
 
                 {/* Social Links */}
-                <div className="glass rounded-2xl p-7">
+                <InteractiveCard>
+                  <div className="service-card w-full h-full">
                   <h3 className="text-lg font-bold font-display text-navy mb-5">
                     Follow Us
                   </h3>
@@ -475,10 +485,12 @@ export default function ContactPage() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                  </div>
+                </InteractiveCard>
 
                 {/* Response Time */}
-                <div className="glass rounded-2xl p-7">
+                <InteractiveCard>
+                  <div className="service-card w-full h-full">
                   <div className="flex items-center gap-3 mb-3">
                     <Clock size={18} className="text-gold" />
                     <h3 className="text-sm font-bold font-display text-navy">
@@ -489,7 +501,8 @@ export default function ContactPage() {
                     We respond within 24 hours. Strategy sessions are typically
                     scheduled within 2–3 business days of your request.
                   </p>
-                </div>
+                  </div>
+                </InteractiveCard>
               </div>
             </AnimatedSection>
           </div>
@@ -497,11 +510,11 @@ export default function ContactPage() {
       </section>
 
       {/* ===================== CLOSING QUOTE ===================== */}
-      <section className="relative py-24 overflow-hidden bg-navy">
+      <section className="relative py-24 overflow-hidden bg-white">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <div className="text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-white leading-relaxed italic">
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-navy leading-relaxed italic">
                 &ldquo;When your business is clear, Your marketing works, Your
                 sales flow, and your growth makes sense&rdquo;
               </p>

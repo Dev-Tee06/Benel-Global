@@ -15,60 +15,90 @@ import {
 } from "lucide-react";
 import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "./components/AnimatedSection";
+import { CinematicBackground } from "./components/CinematicBackground";
+import { InteractiveCard } from "./components/InteractiveCard";
 
 export default function HomePage() {
   return (
     <>
       {/* HERO */}
       <section className="relative pt-36 pb-24 overflow-hidden bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-left md:text-center">
-          <AnimatedSection>
+        <CinematicBackground />
+        {/* Dramatic Floating Orbs */}
+        <motion.div
+          animate={{ x: [0, 40, -20, 0], y: [0, -20, 15, 0], scale: [1, 1.1, 0.95, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 -right-20 w-[400px] h-[400px] bg-gold/8 blur-[120px] rounded-full pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -30, 25, 0], y: [0, 25, -30, 0], scale: [1, 0.9, 1.05, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-10 -left-20 w-[350px] h-[350px] bg-navy/5 blur-[100px] rounded-full pointer-events-none"
+        />
+        <div className="container-custom relative z-10 text-left md:text-center">
+          <AnimatedSection direction="blur">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/5 border border-navy/10 text-sm text-navy font-medium mb-8">
               <span>The Business Catalyst ⚡</span>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold font-display tracking-tight leading-[1.05] text-navy">
-              Your business isn&apos;t broken.
-              <br />
-              <span className="text-gold">Your growth system is.</span>
-            </h1>
-            <p className="mt-8 text-lg sm:text-xl text-navy-300 max-w-3xl md:mx-auto leading-relaxed">
-              We work with businesses to identify what&apos;s actually limiting
-              their growth and build the strategy, structure, and systems to fix
-              it. No guesswork. No random tactics. Just clear, focused growth.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 md:justify-center">
-              <Link
-                href="/contact"
-                onClick={() => track("cta_click", { location: "hero" })}
-                className="btn-primary flex items-center justify-center gap-2 text-sm sm:text-base !px-6 !py-3 sm:!px-8 sm:!py-4"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Book a Free Strategy Session <ArrowRight size={18} />
-                </span>
-              </Link>
-            </div>
+            <AnimatedSection direction="scale" delay={0.3}>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold font-display tracking-tight leading-[1.05] text-navy">
+                Your business isn&apos;t broken.
+                <br />
+                <span className="text-cinematic-gradient">Your growth system is.</span>
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection direction="blur" delay={0.6}>
+              <p className="mt-8 text-lg sm:text-xl text-navy-300 max-w-3xl md:mx-auto leading-relaxed">
+                We work with businesses to identify what&apos;s actually limiting
+                their growth and build the strategy, structure, and systems to fix
+                it. No guesswork. No random tactics. Just clear, focused growth.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection direction="scale" delay={0.9}>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 md:justify-center">
+                <Link
+                  href="/contact"
+                  onClick={() => track("cta_click", { location: "hero" })}
+                  className="btn-primary flex items-center justify-center gap-2 text-sm sm:text-base !px-6 !py-3 sm:!px-8 sm:!py-4 group"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Book a Free Strategy Session <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </div>
+            </AnimatedSection>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="border-t border-b border-navy/5 bg-navy/2 py-4">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center text-sm font-semibold tracking-widest text-navy/40 uppercase">
+      {/* DIVIDER — Animated Marquee */}
+      <div className="border-t border-b border-navy/5 bg-white py-4 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="container-custom text-center text-sm font-semibold tracking-widest text-navy/40 uppercase"
+        >
           Marketing Consulting · Brand Strategy · Digital Execution
-        </div>
+        </motion.div>
       </div>
 
       {/* SECTION 1 — The Real Problem */}
-      <section className="relative py-28 overflow-hidden bg-cream">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative py-28 overflow-hidden bg-white">
+        <motion.div
+          animate={{ x: [0, 30, -15, 0], y: [0, -15, 10, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 right-0 w-[300px] h-[300px] bg-red-500/5 blur-[80px] rounded-full pointer-events-none"
+        />
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection>
+            <AnimatedSection direction="left">
               <h2 className="text-4xl sm:text-5xl font-bold font-display tracking-tight text-navy leading-[1.1]">
                 Most businesses are working hard in the{" "}
                 <span className="text-gold">wrong direction.</span>
               </h2>
-              <div className="mt-10 glass-dark rounded-2xl p-8 bg-navy text-white">
-                <p className="text-lg leading-relaxed text-navy-100">
+              <div className="mt-10 service-card text-navy">
+                <p className="text-lg leading-relaxed text-navy-400">
                   <strong className="text-gold">
                     The issue is rarely effort. It&apos;s almost always clarity.
                   </strong>{" "}
@@ -78,7 +108,7 @@ export default function HomePage() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection direction="right" delay={0.2}>
+            <AnimatedSection direction="right" delay={0.3}>
               <ul className="space-y-6">
                 {[
                   "You're creating content  but it's not attracting the right people",
@@ -87,14 +117,25 @@ export default function HomePage() {
                   "You've tried different things  but nothing seems to stick",
                   "Growth is happening  but it feels scattered, not strategic",
                 ].map((problem, i) => (
-                  <li key={i} className="flex items-start gap-4">
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * i, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex items-start gap-4"
+                  >
                     <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-red-500" />
+                      <motion.div
+                        animate={{ scale: [1, 1.4, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                        className="w-2 h-2 rounded-full bg-red-500"
+                      />
                     </div>
                     <p className="text-lg text-navy-300 leading-relaxed">
                       {problem}
                     </p>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </AnimatedSection>
@@ -103,9 +144,14 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 2 — What We Do */}
-      <section className="relative py-28 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <AnimatedSection className="max-w-3xl mx-auto">
+      <section className="relative py-28 overflow-hidden bg-white">
+        <motion.div
+          animate={{ x: [0, -25, 20, 0], y: [0, 20, -25, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-gold/6 blur-[100px] rounded-full pointer-events-none"
+        />
+        <div className="container-custom text-center">
+          <AnimatedSection direction="blur" className="max-w-3xl mx-auto">
             <h2 className="text-4xl sm:text-5xl font-bold font-display tracking-tight text-navy">
               We find what&apos;s broken.{" "}
               <span className="text-gold">Then we fix it.</span>
@@ -127,119 +173,104 @@ export default function HomePage() {
       {/* SECTION 3 — Services */}
       <section
         id="services"
-        className="relative py-28 bg-navy text-white overflow-hidden"
+        className="relative py-28 bg-white text-navy overflow-hidden"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
-            <AnimatedSection delay={0.1}>
-              <motion.div
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(10,37,64,0.5)",
-                }}
-                className="glass-dark border border-gold/20 hover:border-gold/50 p-10 h-full rounded-[2rem] flex flex-col transition-colors duration-300 relative overflow-hidden group"
-              >
-                <div className="absolute top-[-50%] right-[-50%] w-[150%] h-[150%] bg-gold/5 blur-[80px] rounded-full group-hover:bg-gold/10 transition-colors duration-500 pointer-events-none" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 group-hover:bg-gold/20 group-hover:border-gold/30 transition-all duration-500">
-                    <Target className="text-gold w-8 h-8" />
+            <AnimatedSection delay={0.1} direction="zoom">
+              <InteractiveCard>
+                <div className="service-card group relative h-full flex flex-col">
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-2xl bg-navy/5 border border-navy/10 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-navy group-hover:border-navy transition-all duration-500">
+                      <Target className="text-navy group-hover:text-gold w-8 h-8 transition-colors duration-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-display mb-4 text-navy">
+                      Marketing Consulting
+                    </h3>
+                    <p className="text-navy-300 leading-relaxed text-base">
+                      We sit with your business, diagnose the real growth
+                      blockers, and give you a clear, structured plan. No generic
+                      advice everything is specific to where you are and where you
+                      need to go.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold font-display mb-4">
-                    Marketing Consulting
-                  </h3>
-                  <p className="text-navy-100 leading-relaxed font-light">
-                    We sit with your business, diagnose the real growth
-                    blockers, and give you a clear, structured plan. No generic
-                    advice everything is specific to where you are and where you
-                    need to go.
-                  </p>
                 </div>
-              </motion.div>
+              </InteractiveCard>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.2}>
-              <motion.div
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(10,37,64,0.5)",
-                }}
-                className="glass-dark border border-gold/20 hover:border-gold/50 p-10 h-full rounded-[2rem] flex flex-col transition-colors duration-300 relative overflow-hidden group"
-              >
-                <div className="absolute top-[-50%] right-[-50%] w-[150%] h-[150%] bg-gold/5 blur-[80px] rounded-full group-hover:bg-gold/10 transition-colors duration-500 pointer-events-none" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 group-hover:bg-gold/20 group-hover:border-gold/30 transition-all duration-500">
-                    <Crosshair className="text-gold w-8 h-8" />
+            <AnimatedSection delay={0.2} direction="zoom">
+              <InteractiveCard>
+                <div className="service-card group relative h-full flex flex-col">
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-2xl bg-navy/5 border border-navy/10 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-navy group-hover:border-navy transition-all duration-500">
+                      <Crosshair className="text-navy group-hover:text-gold w-8 h-8 transition-colors duration-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-display mb-4 text-navy">
+                      Brand & Positioning Strategy
+                    </h3>
+                    <p className="text-navy-300 leading-relaxed text-base">
+                      How your business is perceived determines how it grows. We
+                      sharpen your positioning, clarify your message, and make
+                      sure your brand communicates value not just aesthetics.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold font-display mb-4">
-                    Brand & Positioning Strategy
-                  </h3>
-                  <p className="text-navy-100 leading-relaxed font-light">
-                    How your business is perceived determines how it grows. We
-                    sharpen your positioning, clarify your message, and make
-                    sure your brand communicates value not just aesthetics.
-                  </p>
                 </div>
-              </motion.div>
+              </InteractiveCard>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.3}>
-              <motion.div
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(10,37,64,0.5)",
-                }}
-                className="glass-dark border border-gold/20 hover:border-gold/50 p-10 h-full rounded-[2rem] flex flex-col transition-colors duration-300 relative overflow-hidden group"
-              >
-                <div className="absolute top-[-50%] right-[-50%] w-[150%] h-[150%] bg-gold/5 blur-[80px] rounded-full group-hover:bg-gold/10 transition-colors duration-500 pointer-events-none" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 group-hover:bg-gold/20 group-hover:border-gold/30 transition-all duration-500">
-                    <Layers className="text-gold w-8 h-8" />
+            <AnimatedSection delay={0.3} direction="zoom">
+              <InteractiveCard>
+                <div className="service-card group relative h-full flex flex-col">
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-2xl bg-navy/5 border border-navy/10 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-navy group-hover:border-navy transition-all duration-500">
+                      <Layers className="text-navy group-hover:text-gold w-8 h-8 transition-colors duration-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-display mb-4 text-navy">
+                      Marketing Strategy & Systems
+                    </h3>
+                    <p className="text-navy-300 leading-relaxed text-base">
+                      A strategy isn&apos;t a plan on paper. It&apos;s a system
+                      that runs. We build structured marketing systems content,
+                      channels, funnels that work together and drive consistent
+                      results.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold font-display mb-4">
-                    Marketing Strategy & Systems
-                  </h3>
-                  <p className="text-navy-100 leading-relaxed font-light">
-                    A strategy isn&apos;t a plan on paper. It&apos;s a system
-                    that runs. We build structured marketing systems content,
-                    channels, funnels that work together and drive consistent
-                    results.
-                  </p>
                 </div>
-              </motion.div>
+              </InteractiveCard>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.4}>
-              <motion.div
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(10,37,64,0.5)",
-                }}
-                className="glass-dark border border-gold/20 hover:border-gold/50 p-10 h-full rounded-[2rem] flex flex-col transition-colors duration-300 relative overflow-hidden group"
-              >
-                <div className="absolute top-[-50%] right-[-50%] w-[150%] h-[150%] bg-gold/5 blur-[80px] rounded-full group-hover:bg-gold/10 transition-colors duration-500 pointer-events-none" />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 group-hover:bg-gold/20 group-hover:border-gold/30 transition-all duration-500">
-                    <Rocket className="text-gold w-8 h-8" />
+            <AnimatedSection delay={0.4} direction="zoom">
+              <InteractiveCard>
+                <div className="service-card group relative h-full flex flex-col">
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 rounded-2xl bg-navy/5 border border-navy/10 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-navy group-hover:border-navy transition-all duration-500">
+                      <Rocket className="text-navy group-hover:text-gold w-8 h-8 transition-colors duration-500" />
+                    </div>
+                    <h3 className="text-2xl font-bold font-display mb-4 text-navy">
+                      Digital Marketing & Implementation
+                    </h3>
+                    <p className="text-navy-300 leading-relaxed text-base">
+                      For businesses that want it done for them. Social media,
+                      paid ads, SEO, email, content creation we handle the
+                      execution end-to-end, aligned with your strategy.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold font-display mb-4">
-                    Digital Marketing & Implementation
-                  </h3>
-                  <p className="text-navy-100 leading-relaxed font-light">
-                    For businesses that want it done for them. Social media,
-                    paid ads, SEO, email, content creation we handle the
-                    execution end-to-end, aligned with your strategy.
-                  </p>
                 </div>
-              </motion.div>
+              </InteractiveCard>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* SECTION 4 — The BenEl Difference */}
-      <section className="relative py-28 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+      <section className="relative py-28 overflow-hidden bg-white">
+        <motion.div
+          animate={{ x: [0, 35, -20, 0], y: [0, -25, 20, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-20 right-1/4 w-[350px] h-[350px] bg-gold/8 blur-[100px] rounded-full pointer-events-none"
+        />
+        <div className="container-custom">
+          <AnimatedSection direction="blur" className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold font-display tracking-tight text-navy">
               We don&apos;t just market your business. <br />
               <span className="text-gold">We understand it first.</span>
@@ -261,16 +292,22 @@ export default function HomePage() {
                 copy: "Visibility means nothing without conversion. Every strategy we build is tied to one thing  moving your business forward in revenue and growth.",
               },
             ].map((col, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="glass p-8 rounded-2xl h-full border-navy/5">
-                  <div className="text-gold font-display font-bold text-5xl mb-6 opacity-120">
-                    0{i + 1}
+              <AnimatedSection key={i} delay={i * 0.2} direction="scale">
+                <InteractiveCard>
+                  <div className="service-card p-8 rounded-2xl h-full">
+                    <motion.div
+                      animate={{ scale: [1, 1.03, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                      className="text-gold font-display font-bold text-5xl mb-6"
+                    >
+                      0{i + 1}
+                    </motion.div>
+                    <h3 className="text-xl font-bold font-display text-navy mb-4">
+                      {col.title}
+                    </h3>
+                    <p className="text-navy-300 leading-relaxed">{col.copy}</p>
                   </div>
-                  <h3 className="text-xl font-bold font-display text-navy mb-4">
-                    {col.title}
-                  </h3>
-                  <p className="text-navy-300 leading-relaxed">{col.copy}</p>
-                </div>
+                </InteractiveCard>
               </AnimatedSection>
             ))}
           </div>
@@ -278,8 +315,8 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 5 — Who This Is For */}
-      <section className="relative py-28 bg-cream overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative py-28 bg-white overflow-hidden">
+        <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
             <AnimatedSection>
               <h2 className="text-4xl sm:text-5xl font-bold font-display tracking-tight text-navy mb-6">
@@ -340,12 +377,22 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 6 — Bottom CTA Banner */}
-      <section className="relative py-28 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-          <AnimatedSection>
-            <div className="bg-navy rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+      <section className="relative py-28 overflow-hidden bg-white">
+        <motion.div
+          animate={{ x: [0, 50, -30, 0], y: [0, -30, 20, 0], scale: [1, 1.15, 0.9, 1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-gold/10 blur-[150px] rounded-full pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -40, 25, 0], y: [0, 20, -35, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-navy/5 blur-[120px] rounded-full pointer-events-none"
+        />
+        <div className="container-custom relative z-10">
+          <AnimatedSection direction="scale">
+            <div className="service-card rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden">
               <div className="relative z-10">
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-10">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-navy mb-10">
                   Ready to stop guessing and start <br />
                   <span className="text-gold">growing with structure?</span>
                 </h2>

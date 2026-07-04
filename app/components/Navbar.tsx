@@ -31,14 +31,14 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-nav ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-navy-50/50 shadow-glass-sm"
+          ? "bg-white/75 backdrop-blur-[20px] border-b border-white/20 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <nav className="container-custom">
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-16" : "h-20"}`}>
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative h-10 w-40">
@@ -51,27 +51,21 @@ export function Navbar() {
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    isActive
-                      ? "text-navy"
-                      : "text-navy-300 hover:text-navy"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="navbar-active"
-                      className="absolute inset-0 rounded-lg bg-navy-50/50 border border-navy-50"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </Link>
-              );
-            })}
-          </div>
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 group ${
+                      isActive
+                        ? "text-navy"
+                        : "text-navy-300 hover:text-navy"
+                    }`}
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    <span className={`absolute left-0 bottom-0 h-0.5 bg-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+                  </Link>
+                );
+              })}
+            </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
@@ -103,7 +97,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden bg-white/98 backdrop-blur-2xl border-b border-navy-50/50"
+            className="md:hidden overflow-hidden bg-white/95 backdrop-blur-[20px] border-b border-white/20 shadow-sm"
           >
             <div className="px-6 py-6 space-y-2">
               {navLinks.map((link, i) => {
