@@ -12,7 +12,7 @@ import {
   Crosshair,
   TrendingUp,
   Layers,
-  Search,
+  Compass,
 } from "lucide-react";
 import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "./components/AnimatedSection";
@@ -29,21 +29,33 @@ export default function HomePage() {
         <CinematicBackground />
         {/* Dramatic Floating Orbs */}
         <motion.div
-          animate={{ x: [0, 40, -20, 0], y: [0, -20, 15, 0], scale: [1, 1.1, 0.95, 1] }}
+          animate={{
+            x: [0, 40, -20, 0],
+            y: [0, -20, 15, 0],
+            scale: [1, 1.1, 0.95, 1],
+          }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-20 -right-20 w-[400px] h-[400px] bg-gold/10 blur-[120px] rounded-full pointer-events-none mix-blend-screen"
         />
         <motion.div
-          animate={{ x: [0, -30, 25, 0], y: [0, 25, -30, 0], scale: [1, 0.9, 1.05, 1] }}
+          animate={{
+            x: [0, -30, 25, 0],
+            y: [0, 25, -30, 0],
+            scale: [1, 0.9, 1.05, 1],
+          }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -bottom-10 -left-20 w-[350px] h-[350px] bg-royal-blue/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen"
         />
         <div className="container-custom relative z-10 text-left md:text-center mt-8">
-          <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/5 border border-navy/10 text-sm text-navy font-medium mb-8 backdrop-blur-md">
               <span>The Business Catalyst ⚡</span>
             </div>
-            
+
             <h1 className="text-[56px] sm:text-[64px] lg:text-[72px] font-[800] leading-none tracking-[-0.06em] font-display text-navy mt-4 max-w-5xl md:mx-auto">
               Your business isn&apos;t broken.
               <br />
@@ -51,13 +63,13 @@ export default function HomePage() {
                 Your growth system is.
               </span>
             </h1>
-            
+
             <p className="mt-8 text-lg sm:text-xl text-navy-400 max-w-3xl md:mx-auto leading-relaxed">
               We work with businesses to identify what&apos;s actually limiting
               their growth and build the strategy, structure, and systems to fix
               it. No guesswork. No random tactics. Just clear, focused growth.
             </p>
-            
+
             <div className="mt-12 flex flex-col sm:flex-row gap-4 md:justify-center">
               <MagneticButton
                 href="/contact"
@@ -65,7 +77,11 @@ export default function HomePage() {
                 className="btn-primary flex items-center justify-center gap-2 text-sm sm:text-base !px-6 !py-3 sm:!px-8 sm:!py-4 group"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Book a Free Strategy Session <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  Book a Free Strategy Session{" "}
+                  <ArrowRight
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
               </MagneticButton>
             </div>
@@ -124,13 +140,21 @@ export default function HomePage() {
                     initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.1 * i, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{
+                      delay: 0.1 * i,
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     className="flex items-start gap-4"
                   >
                     <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center">
                       <motion.div
                         animate={{ scale: [1, 1.4, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3,
+                        }}
                         className="w-2 h-2 rounded-full bg-red-500"
                       />
                     </div>
@@ -162,7 +186,10 @@ export default function HomePage() {
             <p className="mt-8 text-xl text-navy-400 leading-relaxed">
               BenEl is a growth consultancy. We look at your business as a whole
               your{" "}
-              <Link href="/about" className="text-gold hover:underline font-medium">
+              <Link
+                href="/about"
+                className="text-gold hover:underline font-medium"
+              >
                 brand strategy
               </Link>
               , your messaging, your marketing, your sales process and identify
@@ -192,9 +219,9 @@ export default function HomePage() {
                     </h3>
                     <p className="text-navy-300 leading-relaxed text-base">
                       We sit with your business, diagnose the real growth
-                      blockers, and give you a clear, structured plan. No generic
-                      advice everything is specific to where you are and where you
-                      need to go.
+                      blockers, and give you a clear, structured plan. No
+                      generic advice everything is specific to where you are and
+                      where you need to go.
                     </p>
                   </div>
                 </div>
@@ -273,7 +300,10 @@ export default function HomePage() {
           className="absolute -top-20 right-1/4 w-[350px] h-[350px] bg-gold/10 blur-[100px] rounded-full pointer-events-none"
         />
         <div className="container-custom">
-          <AnimatedSection direction="blur" className="text-center max-w-3xl mx-auto mb-16">
+          <AnimatedSection
+            direction="blur"
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
             <h2 className="text-4xl sm:text-5xl font-bold font-display tracking-tight text-navy">
               We don&apos;t just market your business. <br />
               <span className="text-gold">We understand it first.</span>
@@ -283,7 +313,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
-                icon: Search,
+                icon: Compass,
                 title: "Diagnosis Before Direction",
                 copy: "We never recommend before we understand. Every engagement starts with a deep look at your business  what's working, what isn't, and why.",
               },
@@ -303,7 +333,11 @@ export default function HomePage() {
                   <div className="service-card p-8 rounded-2xl h-full flex flex-col items-start relative overflow-hidden group">
                     <motion.div
                       animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                      }}
                       className="absolute top-8 right-8 text-gold font-display font-bold text-lg tracking-widest pointer-events-none"
                     >
                       0{i + 1}
@@ -314,7 +348,9 @@ export default function HomePage() {
                     <h3 className="text-xl font-bold font-display text-navy mb-4 relative z-10">
                       {col.title}
                     </h3>
-                    <p className="text-navy-400 leading-relaxed relative z-10">{col.copy}</p>
+                    <p className="text-navy-400 leading-relaxed relative z-10">
+                      {col.copy}
+                    </p>
                   </div>
                 </InteractiveCard>
               </AnimatedSection>
@@ -389,7 +425,11 @@ export default function HomePage() {
       <section className="relative py-28 overflow-hidden bg-white">
         <DiagonalAccent color="navy" className="opacity-60" />
         <motion.div
-          animate={{ x: [0, 50, -30, 0], y: [0, -30, 20, 0], scale: [1, 1.15, 0.9, 1] }}
+          animate={{
+            x: [0, 50, -30, 0],
+            y: [0, -30, 20, 0],
+            scale: [1, 1.15, 0.9, 1],
+          }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-gold/10 blur-[150px] rounded-full pointer-events-none"
         />

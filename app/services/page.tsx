@@ -5,15 +5,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Globe,
   TrendingUp,
-  Megaphone,
   BarChart3,
   Target,
-  Lightbulb,
-  Palette,
-  Code2,
-  Headphones,
+  Layers,
+  Rocket,
+  Zap,
+  CheckCircle2,
+  Crosshair,
 } from "lucide-react";
 import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
@@ -23,7 +22,7 @@ import { DiagonalAccent } from "../components/DiagonalAccent";
 
 const services = [
   {
-    icon: Globe,
+    icon: Target,
     title: "Business Strategy & Planning",
     image: "/business.jpg",
     description:
@@ -36,7 +35,7 @@ const services = [
     ],
   },
   {
-    icon: Megaphone,
+    icon: Rocket,
     title: "Digital Marketing",
     image: "/digital-market.jpg",
     description:
@@ -49,7 +48,7 @@ const services = [
     ],
   },
   {
-    icon: TrendingUp,
+    icon: Layers,
     title: "Brand Development",
     image: "/development.png",
     description:
@@ -75,7 +74,7 @@ const services = [
     ],
   },
   {
-    icon: Lightbulb,
+    icon: Zap,
     title: "Innovation & Product Development",
     image: "/product.jpg",
     description:
@@ -88,7 +87,7 @@ const services = [
     ],
   },
   {
-    icon: Palette,
+    icon: CheckCircle2,
     title: "Creative & Design Solutions",
     image: "/creative-design.jpg",
     description:
@@ -101,7 +100,7 @@ const services = [
     ],
   },
   {
-    icon: Code2,
+    icon: BarChart3,
     title: "Digital Transformation",
     image: "/digital-trans.jpg",
     description:
@@ -114,7 +113,7 @@ const services = [
     ],
   },
   {
-    icon: Headphones,
+    icon: Crosshair,
     title: "Ongoing Advisory & Support",
     image: "/advisory.jpg",
     description:
@@ -127,7 +126,7 @@ const services = [
     ],
   },
   {
-    icon: Target,
+    icon: TrendingUp,
     title: "Market Entry Strategy",
     image: "/entry.jpg",
     description:
@@ -149,7 +148,11 @@ export default function ServicesPage() {
         <CinematicBackground />
         <DiagonalAccent color="blue-gold" className="opacity-60" />
         <motion.div
-          animate={{ x: [0, 30, -15, 0], y: [0, -20, 10, 0], scale: [1, 1.1, 0.95, 1] }}
+          animate={{
+            x: [0, 30, -15, 0],
+            y: [0, -20, 10, 0],
+            scale: [1, 1.1, 0.95, 1],
+          }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-10 -right-10 w-[400px] h-[400px] bg-gold/8 blur-[120px] rounded-full pointer-events-none"
         />
