@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -7,12 +6,12 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import { ScrollTracker } from "./components/ScrollTracker";
 import { SplashScreen } from "./components/SplashScreen";
+import { SmoothScroll } from "./components/SmoothScroll";
+import { CustomCursor } from "./components/CustomCursor";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://benelglobal.com"),
@@ -53,9 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable}`}>
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700,800&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet" />
         <Script id="organization-schema" type="application/ld+json" strategy="beforeInteractive">
           {`{
             "@context":"https://schema.org",
@@ -67,12 +65,21 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans">
-        <SplashScreen />
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <Analytics />
-        <ScrollTracker />
+        <CustomCursor />
+        <SmoothScroll>
+          <SplashScreen />
+          <Navbar />
+          <div className="fixed top-[15%] -right-1/4 w-[300px] md:w-[500px] lg:w-[800px] opacity-[0.015] pointer-events-none z-40 mix-blend-multiply transform -rotate-12">
+            <img src="/BenEl%20logo.png" alt="" className="w-full h-auto grayscale" />
+          </div>
+          <div className="fixed bottom-[10%] -left-1/4 w-[250px] md:w-[400px] lg:w-[600px] opacity-[0.015] pointer-events-none z-40 mix-blend-multiply transform rotate-12">
+            <img src="/BenEl%20logo.png" alt="" className="w-full h-auto grayscale" />
+          </div>
+          <main className="min-h-screen relative z-10">{children}</main>
+          <Footer />
+          <Analytics />
+          <ScrollTracker />
+        </SmoothScroll>
       </body>
     </html>
   );

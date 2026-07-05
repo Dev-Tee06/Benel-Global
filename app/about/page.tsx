@@ -19,6 +19,7 @@ import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { CinematicBackground } from "../components/CinematicBackground";
 import { InteractiveCard } from "../components/InteractiveCard";
+import { DiagonalAccent } from "../components/DiagonalAccent";
 
 const journeySteps = [
   {
@@ -94,6 +95,7 @@ export default function AboutPage() {
       {/* ===================== HERO ===================== */}
       <section className="relative pt-40 pb-32 overflow-hidden bg-white">
         <CinematicBackground />
+        <DiagonalAccent color="gold" className="opacity-60" />
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-navy/5 blur-[100px] rounded-full pointer-events-none" />
 
@@ -121,7 +123,7 @@ export default function AboutPage() {
       </section>
 
       {/* ===================== WHO WE ARE ===================== */}
-      <section className="relative py-32 overflow-hidden bg-white">
+      <section className="relative py-32 overflow-hidden bg-navy/5">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <AnimatedSection>
@@ -133,7 +135,7 @@ export default function AboutPage() {
                 A consultancy built on{" "}
                 <span className="text-gold">conviction</span>
               </h2>
-              <div className="mt-10 space-y-6 text-navy-300 text-lg sm:text-xl leading-relaxed font-light">
+              <div className="mt-10 space-y-6 text-navy-400 text-lg sm:text-xl leading-relaxed font-light">
                 <p>
                   BenEl Global is a growth consultancy for businesses that are
                   tired of random marketing and ready for real strategy. We work
@@ -189,8 +191,8 @@ export default function AboutPage() {
       </section>
 
       {/* ===================== GROWTH JOURNEY ===================== */}
-      <section className="relative py-32 overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gold/5 blur-[150px] rounded-full pointer-events-none" />
+      <section className="relative py-32 overflow-hidden bg-gold/10">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 blur-[150px] rounded-full pointer-events-none" />
 
         <div className="container-custom relative z-10">
           <AnimatedSection className="text-center max-w-3xl mx-auto mb-20">
@@ -198,7 +200,7 @@ export default function AboutPage() {
               Growth Journey
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tight text-navy leading-[1.1]">
-              The Roadmap to <span className="text-cinematic-gradient">Scale</span>
+              The Roadmap to <span className="text-gold">Scale</span>
             </h2>
             <p className="mt-8 text-xl text-navy-400 font-light leading-relaxed">
               We guide you through a comprehensive, interactive journey designed to move your business from confusion to consistent growth.
@@ -212,7 +214,7 @@ export default function AboutPage() {
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-navy/10 via-[#00D4FF] to-gold origin-top -translate-x-1/2 rounded-full"
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-navy/10 via-gold/50 to-navy/10 origin-top -translate-x-1/2 rounded-full"
             />
 
             <div className="space-y-16 md:space-y-24">
@@ -225,15 +227,14 @@ export default function AboutPage() {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ type: "spring", delay: 0.1, bounce: 0.4 }}
-                      className="w-[72px] h-[72px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center transform group-hover:scale-[1.1] transition-transform duration-500 shadow-[0_10px_30px_rgba(0,212,255,0.3),0_10px_30px_rgba(200,169,81,0.2)] relative"
-                      style={{ background: "linear-gradient(135deg, #0A2540, #00D4FF, #C8A951)" }}
+                      className="w-[72px] h-[72px] md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center transform group-hover:scale-[1.1] transition-transform duration-500 shadow-[0_10px_30px_rgba(200,169,81,0.2)] relative bg-white border-2 border-gold/20"
                     >
                       <motion.div 
                         animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.15, 0.5] }} 
                         transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                        className="absolute inset-[-12px] rounded-full border-2 border-[#00D4FF]/40 pointer-events-none"
+                        className="absolute inset-[-12px] rounded-full border-2 border-gold/40 pointer-events-none"
                       />
-                      <step.icon className="text-white w-7 h-7 md:w-8 md:h-8 z-10" />
+                      <step.icon className="text-gold w-7 h-7 md:w-8 md:h-8 z-10" />
                     </motion.div>
                   </div>
 
@@ -249,7 +250,7 @@ export default function AboutPage() {
                   >
                     <InteractiveCard>
                       <div className={`service-card hover:-translate-y-2 flex flex-col items-center text-center ${i % 2 === 0 ? "md:items-end md:text-right" : "md:items-start md:text-left"}`}>
-                        <span className="text-[#00D4FF] font-bold text-sm tracking-widest block mb-2 uppercase">
+                        <span className="text-gold font-bold text-sm tracking-widest block mb-2 uppercase">
                           Phase 0{i + 1}
                         </span>
                         <h3 className="text-2xl font-bold font-display text-navy mb-4">
@@ -309,6 +310,7 @@ export default function AboutPage() {
 
       {/* ===================== CTA BANNER ===================== */}
       <section className="relative py-24 overflow-hidden bg-white">
+        <DiagonalAccent color="navy" className="opacity-50" />
         <div className="container-custom relative z-10">
           <AnimatedSection>
             <div className="service-card rounded-[40px] p-12 sm:p-20 lg:p-24 text-center relative overflow-hidden">

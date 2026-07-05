@@ -19,6 +19,7 @@ import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { CinematicBackground } from "../components/CinematicBackground";
 import { InteractiveCard } from "../components/InteractiveCard";
+import { DiagonalAccent } from "../components/DiagonalAccent";
 
 const services = [
   {
@@ -146,6 +147,7 @@ export default function ServicesPage() {
       {/* HERO */}
       <section className="relative pt-36 pb-20 overflow-hidden bg-white">
         <CinematicBackground />
+        <DiagonalAccent color="blue-gold" className="opacity-60" />
         <motion.div
           animate={{ x: [0, 30, -15, 0], y: [0, -20, 10, 0], scale: [1, 1.1, 0.95, 1] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
@@ -171,7 +173,7 @@ export default function ServicesPage() {
       </section>
 
       {/* SERVICES GRID */}
-      <section className="relative py-20 overflow-hidden bg-white">
+      <section className="relative py-20 overflow-hidden bg-navy/5">
         <div className="container-custom relative z-10">
           <motion.div
             initial="initial"
@@ -258,11 +260,12 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 overflow-hidden bg-white">
+      <section className="relative py-24 overflow-hidden bg-gold/10">
+        <DiagonalAccent color="navy" className="opacity-5" />
         <motion.div
           animate={{ x: [0, -25, 15, 0], y: [0, 15, -20, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-navy/5 blur-[100px] rounded-full pointer-events-none"
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/40 blur-[100px] rounded-full pointer-events-none"
         />
         <div className="container-custom relative z-10">
           <AnimatedSection direction="scale">
@@ -274,7 +277,7 @@ export default function ServicesPage() {
                   Not Sure Which Service{" "}
                   <span className="text-gold">Is Right?</span>
                 </h2>
-                <p className="text-navy-300 text-lg mx-auto mb-10 leading-relaxed">
+                <p className="text-navy-400 text-lg mx-auto mb-10 leading-relaxed">
                   Book a free consultation and we&apos;ll help you identify
                   exactly what your business needs to reach the next level.
                 </p>

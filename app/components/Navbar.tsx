@@ -31,18 +31,20 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-nav ${
-        scrolled
-          ? "bg-white/75 backdrop-blur-[20px] border-b border-white/20 shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-nav bg-white/95 backdrop-blur-[20px] border-b border-navy/5 shadow-sm`}
     >
       <nav className="container-custom">
         <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-16" : "h-20"}`}>
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative h-10 w-40">
-              <Image src="/BenEl%20logo.png" alt="BenEl Global Logo" fill className="object-contain object-left" priority />
+              <Image 
+                src="/BenEl%20logo.png" 
+                alt="BenEl Global Logo" 
+                fill 
+                className="object-contain object-left drop-shadow-sm" 
+                priority 
+              />
             </div>
           </Link>
 

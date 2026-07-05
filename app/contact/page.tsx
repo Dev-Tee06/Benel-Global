@@ -19,6 +19,7 @@ import { track } from "@vercel/analytics/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { CinematicBackground } from "../components/CinematicBackground";
 import { InteractiveCard } from "../components/InteractiveCard";
+import { DiagonalAccent } from "../components/DiagonalAccent";
 
 const sessionExpectations = [
   {
@@ -124,6 +125,7 @@ export default function ContactPage() {
       {/* ===================== HERO ===================== */}
       <section className="relative pt-36 pb-20 overflow-hidden bg-white">
         <CinematicBackground />
+        <DiagonalAccent color="blue-gold" className="opacity-60" />
         <div className="container-custom relative z-10">
           <AnimatedSection direction="up" delay={0.2}>
             <span className="text-sm font-semibold text-gold uppercase tracking-widest">
@@ -146,12 +148,12 @@ export default function ContactPage() {
       </section>
 
       {/* ===================== EXPECTATIONS ===================== */}
-      <section className="relative py-20 overflow-hidden bg-white">
+      <section className="relative py-20 overflow-hidden bg-navy/5">
         <div className="container-custom relative z-10">
           <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold font-display tracking-tight text-navy">
               What to expect from your{" "}
-              <span className="text-cinematic-gradient">60-minute session</span>
+              <span className="text-gold">60-minute session</span>
             </h2>
           </AnimatedSection>
 
@@ -178,7 +180,7 @@ export default function ContactPage() {
       </section>
 
       {/* ===================== BOOKING FORM + SIDEBAR ===================== */}
-      <section className="relative py-24 overflow-hidden bg-white">
+      <section className="relative py-24 overflow-hidden bg-gold/10">
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12">
             {/* Booking Form */}
