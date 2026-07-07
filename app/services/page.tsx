@@ -144,7 +144,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-36 pb-20 overflow-hidden bg-white">
+      <section className="relative pt-24 pb-20 overflow-hidden bg-bg-primary">
         <CinematicBackground />
         <DiagonalAccent color="blue-gold" className="opacity-60" />
         <motion.div
@@ -176,7 +176,7 @@ export default function ServicesPage() {
       </section>
 
       {/* SERVICES GRID */}
-      <section className="relative py-20 overflow-hidden bg-navy/5">
+      <section className="relative py-24 overflow-hidden bg-bg-secondary">
         <div className="container-custom relative z-10">
           <motion.div
             initial="initial"
@@ -263,7 +263,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 overflow-hidden bg-gold/10">
+      <section className="relative py-24 overflow-hidden bg-bg-accent">
         <DiagonalAccent color="navy" className="opacity-5" />
         <motion.div
           animate={{ x: [0, -25, 15, 0], y: [0, 15, -20, 0] }}
@@ -281,7 +281,7 @@ export default function ServicesPage() {
                   <span className="text-gold">Is Right?</span>
                 </h2>
                 <p className="text-navy-400 text-lg mx-auto mb-10 leading-relaxed">
-                  Book a free consultation and we&apos;ll help you identify
+                  Book your consultation now and we&apos;ll help you identify
                   exactly what your business needs to reach the next level.
                 </p>
                 <Link
@@ -289,10 +289,10 @@ export default function ServicesPage() {
                   onClick={() =>
                     track("cta_click", { location: "services_bottom" })
                   }
-                  className="btn-primary inline-flex items-center justify-center gap-3 text-lg sm:text-xl"
+                  className="btn-primary inline-flex items-center justify-center gap-3 text-sm sm:text-base"
                 >
                   <span className="relative z-10 flex items-center gap-3">
-                    Book a Free Consultation{" "}
+                    Book Your Consultation Now{" "}
                     <ArrowRight
                       size={20}
                       className="transition-transform group-hover:translate-x-1"

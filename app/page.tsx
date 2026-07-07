@@ -25,7 +25,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-36 pb-32 overflow-hidden text-navy">
+      <section className="relative pt-24 pb-20 overflow-hidden text-navy">
         <CinematicBackground />
         {/* Dramatic Floating Orbs */}
         <motion.div
@@ -74,10 +74,10 @@ export default function HomePage() {
               <MagneticButton
                 href="/contact"
                 onClick={() => track("cta_click", { location: "hero" })}
-                className="btn-primary flex items-center justify-center gap-2 text-sm sm:text-base !px-6 !py-3 sm:!px-8 sm:!py-4 group"
+                className="btn-primary flex items-center justify-center gap-2 text-xs sm:text-sm group"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Book a Free Strategy Session{" "}
+                  Book Your Consultation Now{" "}
                   <ArrowRight
                     size={18}
                     className="group-hover:translate-x-1 transition-transform"
@@ -102,7 +102,7 @@ export default function HomePage() {
       </div>
 
       {/* SECTION 1 — The Real Problem */}
-      <section className="relative py-28 overflow-hidden bg-navy/5">
+      <section className="relative py-24 overflow-hidden bg-bg-secondary">
         <motion.div
           animate={{ x: [0, 30, -15, 0], y: [0, -15, 10, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
@@ -170,7 +170,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 2 — What We Do */}
-      <section className="relative py-28 overflow-hidden bg-gold/10">
+      <section className="relative py-24 overflow-hidden bg-bg-accent">
         <DiagonalAccent color="navy" className="opacity-5" />
         <motion.div
           animate={{ x: [0, -25, 20, 0], y: [0, 20, -25, 0] }}
@@ -203,7 +203,7 @@ export default function HomePage() {
       {/* SECTION 3 — Services */}
       <section
         id="services"
-        className="relative py-28 bg-white text-navy overflow-hidden"
+        className="relative py-24 bg-bg-primary text-navy overflow-hidden"
       >
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
@@ -293,7 +293,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 4 — The BenEl Difference */}
-      <section className="relative py-28 overflow-hidden bg-navy/5">
+      <section className="relative py-24 overflow-hidden bg-bg-secondary">
         <motion.div
           animate={{ x: [0, 35, -20, 0], y: [0, -25, 20, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
@@ -360,7 +360,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 5 — Who This Is For */}
-      <section className="relative py-28 bg-gold/10 overflow-hidden">
+      <section className="relative py-24 bg-bg-accent overflow-hidden">
         <div className="container-custom">
           <div className="text-center max-w-4xl mx-auto">
             <AnimatedSection>
@@ -422,7 +422,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 6 — Bottom CTA Banner */}
-      <section className="relative py-28 overflow-hidden bg-white">
+      <section className="relative py-24 overflow-hidden bg-bg-premium">
         <DiagonalAccent color="navy" className="opacity-60" />
         <motion.div
           animate={{
@@ -451,10 +451,10 @@ export default function HomePage() {
                   onClick={() =>
                     track("cta_click", { location: "bottom_banner" })
                   }
-                  className="btn-primary inline-flex items-center gap-2 text-base sm:text-lg !px-6 !py-3 sm:!px-10 sm:!py-4"
+                  className="btn-primary inline-flex items-center gap-2 text-sm sm:text-base"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    Book Your Strategy Session <ArrowRight size={20} />
+                    Book Your Consultation Now <ArrowRight size={20} />
                   </span>
                 </MagneticButton>
               </div>

@@ -73,9 +73,9 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/contact"
-              className="btn-primary text-sm !px-6 !py-2.5"
+              className="btn-primary text-sm"
             >
-              <span className="relative z-10">Book a Strategy Session</span>
+              <span className="relative z-10">Book Your Consultation Now</span>
             </Link>
           </div>
 
@@ -132,9 +132,9 @@ export function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className="btn-primary block text-center text-sm !py-3"
+                  className="btn-primary block text-center text-sm"
                 >
-                  <span className="relative z-10">Book a Strategy Session</span>
+                  <span className="relative z-10">Book Your Consultation Now</span>
                 </Link>
               </motion.div>
             </div>

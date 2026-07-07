@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { track } from "@vercel/analytics/react";
-import { Mail, Phone, Instagram, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, Instagram, ArrowUpRight, ArrowRight } from "lucide-react";
 
 const footerLinks = [
   { href: "/", label: "Home" },
@@ -14,7 +14,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-white text-navy mt-auto overflow-hidden">
+    <footer className="relative bg-white/95 backdrop-blur-[20px] text-navy mt-auto overflow-hidden">
       {/* Subtle Separator */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00D4FF]/30 via-50% to-transparent" />
       <div className="relative container-custom py-20 z-10">
@@ -31,11 +31,11 @@ export function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-navy-300 text-sm leading-relaxed max-w-xs">
+            <p className="text-navy-300 text-base leading-relaxed max-w-xs font-medium">
               Growth consultancy helping businesses build the clarity, strategy,
               and systems that drive real revenue.
             </p>
-            <p className="text-gold text-xs italic">
+            <p className="text-gold text-sm italic font-semibold tracking-wide">
               Marketing Consulting · Brand Strategy · Digital Execution
             </p>
           </div>
@@ -104,7 +104,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-gold/20 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-navy/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-navy-300 text-xs">© 2026 BenEl Global</p>
           <p className="text-navy-300 text-xs">
             Built for growth. Designed with purpose.

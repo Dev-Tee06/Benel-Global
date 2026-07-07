@@ -7,7 +7,6 @@ import Script from "next/script";
 import { ScrollTracker } from "./components/ScrollTracker";
 import { SplashScreen } from "./components/SplashScreen";
 import { SmoothScroll } from "./components/SmoothScroll";
-import { CustomCursor } from "./components/CustomCursor";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -65,7 +64,6 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans">
-        <CustomCursor />
         <SmoothScroll>
           <SplashScreen />
           <Navbar />
